@@ -34,7 +34,6 @@ const options = {
 
       console.log(1, selectedDates[0]);
       console.log(convertMs(timeDifference));
-      //dayTimer.textContent = '11';
     }
   },
 };
