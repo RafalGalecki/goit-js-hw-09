@@ -8,43 +8,44 @@ let stepValue;
 let amountValue;
 
 form.addEventListener('submit', handleSubmit);
+
 function handleSubmit(event) {
   event.preventDefault();
-  fillForm();
-  loop();
+  formData();
+  generatePromise();
 }
 
-function fillForm() {
+function formData() {
   Array.from(form.elements).forEach(el => {
     if (el.name === 'delay') {
       delayValue = parseInt(el.value);
-      console.log(delayValue);
     }
     if (el.name === 'step') {
       stepValue = parseInt(el.value);
-      console.log(stepValue);
     }
     if (el.name === 'amount') {
       amountValue = parseInt(el.value);
-      console.log(amountValue);
     }
   });
 }
 
 function createPromise(position, delay) {
-  const shouldResolve = Math.random() > 0.3;
-  if (shouldResolve) {
-    // Fulfill
-  } else {
-    // Reject
-  }
+  setTimeout(() => {
+    const shouldResolve = Math.random() > 0.3;
+    if (shouldResolve) {
+      Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+    } else {
+      Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+    }
+  }, delay);
 }
 
-function loop() {
+function generatePromise() {
   let i;
   let delay;
   for (i = 0; i < amountValue; i++) {
+    let position = i + 1;
     delay = delayValue + stepValue * i;
-    Notiflix.Notify.info(`promise number ${i + 1} and delay ${delay}`);
+    createPromise(position, delay);
   }
 }
