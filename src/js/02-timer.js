@@ -15,6 +15,8 @@ const secondTimer = document.querySelector('[data-seconds');
 
 btnStart.disabled = true;
 
+let ms;
+
 const options = {
   enableTime: true,
   time_24hr: true,
